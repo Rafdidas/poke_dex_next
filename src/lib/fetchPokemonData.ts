@@ -37,7 +37,12 @@ export async function fetchPokemonData(limit = 16, offset = 0): Promise<PokemonD
             (entry) => entry.language.name === 'ko' && entry.version.name === 'x'
         )?.flavor_text;
         
-        const poke_img = pokemonDetails.sprites.versions['generation-v']['black-white'].animated.front_default;
+        const poke_img =
+            pokemonDetails.sprites.versions?.['generation-v']?.['black-white']?.animated
+                ?.front_default ||
+            pokemonDetails.sprites.other?.['official-artwork']?.front_default ||
+            "";
+
 
         return {
             name: koreanName ?? pokemon.name,

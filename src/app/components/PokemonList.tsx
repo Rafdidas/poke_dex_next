@@ -24,7 +24,7 @@ export default function PokemonList() {
         setLoading,
         setHasMore,
     } = usePokemonStore();
-    console.log("📦 Zustand pokemons 상태:", pokemons);
+    
     const loadMore = async () => {
         setLoading(true);
         const newData = await fetchPokemonData(16, offset);
@@ -59,19 +59,20 @@ export default function PokemonList() {
         loadNames();
     },[]);
 
-    const filteredPokemons = searchQuery 
-        ? pokemons.filter((pokemon) => 
-            pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
-        ) : pokemons;
+    // const filteredPokemons = searchQuery 
+    //     ? pokemons.filter((pokemon) => 
+    //         pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    //         pokemon.species.toLowerCase().includes(searchQuery.toLowerCase())
+    //     ) : pokemons;
 
-    if (loading) return <p className="loading">Loading...</p>;
+    if (loading && pokemons.length === 0) return <p className="loading">Loading...</p>;
     if (!pokemons) return <p className="error">ERROR</p>;
 
 
     return (
         <>
             <ul className="poke_list">
-                {filteredPokemons.map((pokemon) => (
+                {pokemons.map((pokemon) => (
                     <li key={pokemon.pokeId}>
                         <PokemonBox {...pokemon} />
                     </li>

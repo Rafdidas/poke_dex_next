@@ -1,6 +1,7 @@
 export type PokemonBasic = {
   name: string;
   url: string;
+  korean: string;
 };
 
 export type TypeName = {
@@ -20,16 +21,22 @@ export type PokemonTypeRaw = {
 };
 
 export type PokemonDetail = {
-  name: string; 
+  name: string;
   species: { url: string };
   sprites: {
     versions: {
       ['generation-v']: {
         ['black-white']: {
           animated: {
-            front_default: string;
+            front_default: string | null;
           };
         };
+      };
+    };
+    other: {
+      ['official-artwork']: {
+        front_default: string | null;
+        front_shiny?: string | null;
       };
     };
   };

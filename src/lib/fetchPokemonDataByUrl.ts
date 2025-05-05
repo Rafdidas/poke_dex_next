@@ -32,7 +32,11 @@ export async function fetchPokemonDataByUrl(url: string): Promise<PokemonData> {
         (entry) => entry.language.name === 'ko' && entry.version.name === 'x'
     )?.flavor_text;
     
-    const poke_img = pokemonDetails.sprites.versions['generation-v']['black-white'].animated.front_default;
+    const poke_img =
+        pokemonDetails.sprites.versions?.['generation-v']?.['black-white']?.animated
+            ?.front_default ||
+        pokemonDetails.sprites.other?.['official-artwork']?.front_default ||
+        "";
 
     return {
         name: koreanName ?? pokemonDetails.name,

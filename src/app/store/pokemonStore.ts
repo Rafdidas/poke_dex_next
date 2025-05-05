@@ -4,6 +4,7 @@ import { create } from "zustand";
 type PokemonName = {
     name : string;
     url : string;
+    korean : string;
 };
 
 type PokemonStore = {
@@ -25,6 +26,7 @@ type PokemonStore = {
     setSelectedType: (type: string | null) => void;
     setHasMore: (value: boolean) => void;
     setLoading: (value: boolean) => void;
+    resetStore: () => void;
 };
 
 export const usePokemonStore = create<PokemonStore>((set) => ({
@@ -46,5 +48,11 @@ export const usePokemonStore = create<PokemonStore>((set) => ({
     setSelectedType: (type) => set({ selectedType: type }),
     setHasMore: (value) => set({ hasMore: value }),
     setLoading: (value) => set({ loading: value }),
+    resetStore: () => set(() => ({
+        pokemons: [],
+        offset: 0,
+        hasMore: true,
+        searchQuery: '',
+    }))
 
 }));
