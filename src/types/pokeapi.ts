@@ -20,6 +20,7 @@ export type PokemonTypeRaw = {
 };
 
 export type PokemonDetail = {
+  name: string; 
   species: { url: string };
   sprites: {
     versions: {
