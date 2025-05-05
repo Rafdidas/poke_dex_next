@@ -1,19 +1,45 @@
-.poke_search_main,
-.poke_search_main * {
-    font-family: 'galmuri9';
-    font-size: 1rem;
+.poke_search_box {
+    position: relative;
+    display: flex;
+    justify-content: start;
+    column-gap: 1rem;
+    align-items: center;
+    margin: 5rem auto 2rem;
+    * {
+        font-family: 'galmuri9';
+        font-size: 1rem;
+    }
+    .poke_search_main {
+        display: block;
+        width: 100%;
+        max-width: 800px;
+        height: 3.73rem;
+        padding: 1rem 2.7rem 1rem 1.25rem;
+        background: url('../../assets/pokeball.png') no-repeat center right 1rem/ 1.66rem auto #fff;
+        border-radius: .75rem;
+        box-shadow: var(--box-shadow-set, 0 0 #0000), var(--box-shadow-set, 0 0 #0000), var(--box-shadow);
+        border: none;
+        outline: none;
+    }
+    .btn_box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .srch_back {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+            border-radius: 1.533rem;
+            padding: 0.3rem 0.8rem;
+            background-color: #000;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
 }
 
-.poke_search_main {
-    display: block;
-    width: 100%;
-    max-width: 800px;
-    height: 3.73rem;
-    margin: 5rem auto 2rem;
-    padding: 1rem 2.7rem 1rem 1.25rem;
-    background: url('../../assets/pokeball.png') no-repeat center right 1rem/ 1.66rem auto #fff;
-    border-radius: .75rem;
-    box-shadow: var(--box-shadow-set, 0 0 #0000), var(--box-shadow-set, 0 0 #0000), var(--box-shadow);
-    border: none;
-    outline: none;
-}
+
+

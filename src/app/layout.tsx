@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import Providers from "./provider";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Next PokeDex",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="cntbody">{children}</div>
+          <Footer />
         </Providers>
       </body>
     </html>

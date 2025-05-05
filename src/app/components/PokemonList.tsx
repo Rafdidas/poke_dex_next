@@ -3,29 +3,35 @@
 import { fetchPokemonData } from "@/lib/fetchPokemonData";
 import { useEffect } from "react";
 
-import Image from "next/image";
-
 import PokemonBox from "./PokemonBox";
 
 import '../styles/pokeList.style.scss';
-import moreBtn from '@/assets/masterball.png';
+
 import { usePokemonStore } from "../store/pokemonStore";
 import { fetchAllPokemonNames } from "@/lib/fetchAllPokemonNames";
+import Loading from "./Loading";
+import useInfiniteScroll from "@/hooks/useInfiniteScroll";
 
 export default function PokemonList() {
     const {
         pokemons,
+        searchResult,
         offset,
         loading,
         hasMore,
-        searchQuery,
+        //searchQuery,
+        selectedType,
         appendPokemons,
         setOffsets,
         setLoading,
         setHasMore,
+        allNames,
+        setAllNames,
     } = usePokemonStore();
     
     const loadMore = async () => {
+        if (loading || !hasMore || searchResult.length > 0) return;
+
         setLoading(true);
         const newData = await fetchPokemonData(16, offset);
         appendPokemons(newData);
@@ -39,11 +45,6 @@ export default function PokemonList() {
     useEffect(() => {
         if (pokemons.length === 0) loadMore();
     }, []);
-
-    const {
-        allNames,
-        setAllNames,
-    } = usePokemonStore();
 
     useEffect(() => {
         const loadNames = async () => {
@@ -59,32 +60,40 @@ export default function PokemonList() {
         loadNames();
     },[]);
 
-    // const filteredPokemons = searchQuery 
-    //     ? pokemons.filter((pokemon) => 
-    //         pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    //         pokemon.species.toLowerCase().includes(searchQuery.toLowerCase())
-    //     ) : pokemons;
-
-    if (loading && pokemons.length === 0) return <p className="loading">Loading...</p>;
+    const baseList = searchResult.length > 0 ? searchResult : pokemons;
+    const filteredPokemons = baseList.filter((pokemon) => 
+        selectedType === "" ||
+        pokemon.types.some((t) => t.koreanType === selectedType)
+    );
+    const sentinelRef = useInfiniteScroll(loadMore, hasMore && searchResult.length === 0);
+    
+    useEffect(() => {
+        if (
+            selectedType !== "" &&
+            filteredPokemons.length < 16 &&
+            hasMore &&
+            !loading &&
+            searchResult.length === 0
+        ) {
+            loadMore();
+        }
+    }, [selectedType, filteredPokemons.length, hasMore, loading]);
+    
+    if (loading && pokemons.length === 0) return <Loading />;
     if (!pokemons) return <p className="error">ERROR</p>;
 
 
     return (
+        
         <>
             <ul className="poke_list">
-                {pokemons.map((pokemon) => (
+                {filteredPokemons.map((pokemon) => (
                     <li key={pokemon.pokeId}>
                         <PokemonBox {...pokemon} />
                     </li>
                 ))}
             </ul>
-
-            {hasMore && !searchQuery && (
-                <button className="load_more" onClick={loadMore} disabled={loading}>
-                    <Image src={moreBtn} alt="more"/>
-                    <span>{loading ? '불러오는 중...' : '더보기'}</span>
-                </button>
-            )}
+            <div ref={sentinelRef} style={{ height: 60 }} />
         </>
         
     );

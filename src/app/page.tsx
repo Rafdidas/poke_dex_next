@@ -5,6 +5,7 @@ import PokemonList from "./components/PokemonList";
 import SearchBar from "./components/SearchBar";
 import { usePokemonStore } from "./store/pokemonStore";
 import { fetchAllPokemonNames } from "@/lib/fetchAllPokemonNames";
+import TypeFilter from "./components/TypeFilter";
 
 export default function Home() {
 
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <main>
       <SearchBar />
+      <TypeFilter/>
       <PokemonList />
     </main>
   );

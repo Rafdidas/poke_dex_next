@@ -8,6 +8,7 @@
 
 @media (max-width: 1024px) {
     .poke_list {
+        min-height: 500px;
         grid-template-columns: repeat(3, minmax(0, 1fr))
     }
 }

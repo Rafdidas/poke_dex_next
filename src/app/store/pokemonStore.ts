@@ -9,38 +9,43 @@ type PokemonName = {
 
 type PokemonStore = {
     pokemons: PokemonData[];
+    searchResult: PokemonData[];
     offset: number;
     allNames: PokemonName[];
     types: string[];
     searchQuery: string;
-    selectedType: string | null;
+    selectedType: string;
     hasMore: boolean;
     loading: boolean;
 
     setPokemons: (data: PokemonData[]) => void;
     appendPokemons: (data: PokemonData[]) => void;
+    setSearchResult: (data: PokemonData[]) => void;
     setOffsets: (offset: number) => void;
     setAllNames: (names: PokemonName[]) => void;
     setTypes: (types: string[]) => void;
     setSearchQuery: (query: string) => void;
-    setSelectedType: (type: string | null) => void;
+    setSelectedType: (type: string) => void;
     setHasMore: (value: boolean) => void;
     setLoading: (value: boolean) => void;
     resetStore: () => void;
+    
 };
 
 export const usePokemonStore = create<PokemonStore>((set) => ({
     pokemons: [],
+    searchResult: [],
     offset: 0,
     allNames: [],
     types: [],
     searchQuery: '',
-    selectedType: null,
+    selectedType: "",
     hasMore: true,
     loading: false,
 
     setPokemons: (data) => set({ pokemons: data }),
     appendPokemons: (data) => set((state) => ({ pokemons: [...state.pokemons, ...data] })),
+    setSearchResult: (data) => set({ searchResult: data }),
     setOffsets: (offset) => set({ offset }),
     setAllNames: (names) => set({ allNames: names }),
     setTypes: (types) => set({ types }),
@@ -50,6 +55,7 @@ export const usePokemonStore = create<PokemonStore>((set) => ({
     setLoading: (value) => set({ loading: value }),
     resetStore: () => set(() => ({
         pokemons: [],
+        searchResult: [],
         offset: 0,
         hasMore: true,
         searchQuery: '',

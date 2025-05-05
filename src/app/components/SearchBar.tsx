@@ -57,18 +57,27 @@ export default function SearchBar() {
     
 
     return (
-        <div>
+        <div className="poke_search_box">
             <input
                 className='poke_search_main'
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="포켓몬 이름을 입력해주세요."
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                    handleSearch();
+                    }
+                }}
             />
-            <button onClick={handleSearch} disabled={loading}>
-                {loading ? '검색 중...' : '검색'}
-            </button>
-            <button onClick={handleReset}>전체 보기</button>
+            <div className="btn_box">
+                {/* <button onClick={handleSearch} disabled={loading} className="srch_btn">
+                    {loading ? '검색 중...' : '검색'}
+                </button> */}
+                <button className="srch_back" onClick={handleReset}>
+                    {loading ? '검색 중...' : '전체 보기'}
+                </button>
+            </div>
         </div>
     )
 }
