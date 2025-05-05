@@ -24,7 +24,7 @@ export default function PokemonList() {
         setLoading,
         setHasMore,
     } = usePokemonStore();
-
+    console.log("📦 Zustand pokemons 상태:", pokemons);
     const loadMore = async () => {
         setLoading(true);
         const newData = await fetchPokemonData(16, offset);

@@ -30,17 +30,18 @@ export default function SearchBar() {
         }
 
         try {
-            setLoading(true);
-            const result = await fetchPokemonDataByUrl(match.url);
-            setPokemons([result]);
-            setHasMore(false);
-        } catch (err) {
-            alert('데이터를 불러오는 데 실패했습니다.');
-            console.error(err);
+        setLoading(true);
+        const result = await fetchPokemonDataByUrl(match.url);
+        console.log("🎯 불러온 포켓몬:", result);
+        setPokemons([result]);
+        setHasMore(false);
+        } catch (error) {
+        console.error("❌ 포켓몬 fetch 실패:", error);
         } finally {
             setLoading(false);
         }
     };
+    
 
     return (
         <div>
