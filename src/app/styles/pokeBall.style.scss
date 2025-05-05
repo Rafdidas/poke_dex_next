@@ -1,0 +1,65 @@
+.poke_ball {
+    width: 100%;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: var(--box-shadow-set, 0 0 #0000), var(--box-shadow-set, 0 0 #0000), var(--box-shadow);
+    cursor: pointer;
+
+    * {
+        font-family: 'galmuri9';
+    }
+
+    .name_section {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+        }
+
+        .poke_name {
+            font-size: 1.0666rem;
+        }
+    }
+
+    .poke_img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 1.3rem 0;
+
+        img {
+            width: auto;
+            height: 80px;
+        }
+    }
+
+    .poke_type {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        column-gap: 5px;
+
+        >li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            border-radius: 1.533rem;
+
+            >span {
+                color: #fff;
+            }
+
+            >img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
