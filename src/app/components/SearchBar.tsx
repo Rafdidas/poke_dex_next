@@ -34,8 +34,9 @@ export default function SearchBar() {
             const result = await fetchPokemonDataByUrl(match.url);
             setPokemons([result]);
             setHasMore(false);
-        } catch (error) {
+        } catch (err) {
             alert('데이터를 불러오는 데 실패했습니다.');
+            console.error(err);
         } finally {
             setLoading(false);
         }
