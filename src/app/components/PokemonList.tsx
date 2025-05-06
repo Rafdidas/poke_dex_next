@@ -94,6 +94,7 @@ export default function PokemonList() {
                 ))}
             </ul>
             <div ref={sentinelRef} style={{ height: 60 }} />
+            {loading && <Loading />}
         </>
         
     );

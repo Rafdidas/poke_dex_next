@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import { usePokemonStore } from "./store/pokemonStore";
 import { fetchAllPokemonNames } from "@/lib/fetchAllPokemonNames";
 import TypeFilter from "./components/TypeFilter";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 export default function Home() {
 
@@ -19,13 +20,14 @@ export default function Home() {
       }
     };
     loadAllNames();
-  },[]);
+  }, []);
 
   return (
     <main>
       <SearchBar />
       <TypeFilter/>
       <PokemonList />
+      <ScrollToTopButton />
     </main>
   );
 }

@@ -27,6 +27,7 @@ export default function RootLayout({
           <Header />
           <div className="cntbody">{children}</div>
           <Footer />
+          
         </Providers>
       </body>
     </html>
