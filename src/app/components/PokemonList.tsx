@@ -87,8 +87,8 @@ export default function PokemonList() {
         
         <>
             <ul className="poke_list">
-                {filteredPokemons.map((pokemon) => (
-                    <li key={pokemon.pokeId}>
+                {filteredPokemons.map((pokemon, index) => (
+                    <li key={index}>
                         <PokemonBox {...pokemon} />
                     </li>
                 ))}

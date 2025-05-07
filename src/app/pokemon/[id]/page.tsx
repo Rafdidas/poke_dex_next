@@ -1,0 +1,85 @@
+import { fetchPokemonDataById } from "@/lib/fetchPokemonDataById";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+import '../../styles/pokemonDetailPage.style.scss';
+
+type Props = {
+    params: { id: string };
+};
+
+export default async function PokemonDetailPage({ params }: Props) {
+    const { id } = params;
+    try {
+        const data = await fetchPokemonDataById(Number(id));
+        return (
+            <main id="detail_page">
+                <div className="detail_inner">
+                    <Image className="detail_img" src={data.poke_img} alt={data.name} width={100} height={100} />
+                    <p>#{data.pokeId}</p>
+                    <h1>{data.name}</h1>
+                    <p>{data.generas}</p>
+                    <ul>
+                    {data.types.map((type) => (
+                        <li key={type.name}>{type.koreanType}</li>
+                    ))}
+                    </ul>
+                    <p>{data.flavorTexts}</p>
+                    <div className="extra_info">
+                        <div className="measurements">
+                            <p><strong>키</strong>: {data.height.toLocaleString()} m</p>
+                            <p><strong>몸무게</strong>: {data.weight.toLocaleString()} kg</p>
+                        </div>
+
+                        <div className="abilities">
+                            <h3>특성</h3>
+                            <ul>
+                            {data.abilities.map((ability) => (
+                                <li key={ability.name}>
+                                {ability.name} {ability.is_hidden && ""}
+                                </li>
+                            ))}
+                            </ul>
+                        </div>
+
+                        <div className="stats">
+                            <h3>능력치</h3>
+                            <ul>
+                            {data.stats.map((stat) => (
+                                <li key={stat.name}>
+                                {stat.name}: {stat.value}
+                                </li>
+                            ))}
+                            </ul>
+                        </div>
+
+                        <div className="breeding">
+                            <p><strong>성별 비율</strong>: {data.genderRate === -1 ? "성별 없음" : `${(12.5 * (8 - data.genderRate)).toFixed(1)}% ♂ / ${(12.5 * data.genderRate).toFixed(1)}% ♀`}</p>
+                            <p><strong>알 그룹</strong>: {data.eggGroups.join(", ")}</p>
+                        </div>
+                        {/* {data.evolution.length > 0 && (
+                        <section className="evolution_section">
+                            <h2>진화 경로</h2>
+                            <ul className="evolution_list">
+                            {data.evolution.map((evo) => (
+                                <li key={evo.id} className="evolution_item">
+                                <Image
+                                    src={evo.image}
+                                    alt={evo.name}
+                                    width={80}
+                                    height={80}
+                                />
+                                <p>{evo.name}</p>
+                                </li>
+                            ))}
+                            </ul>
+                        </section>
+                        )} */}
+                    </div>
+                </div>
+            </main>
+        )
+    } catch {
+        notFound();
+    }
+}

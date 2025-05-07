@@ -23,20 +23,33 @@ export type PokemonTypeRaw = {
 export type PokemonDetail = {
   name: string;
   species: { url: string };
+  height: number;
+  weight: number;
+  abilities: {
+    ability: {
+      name: string;
+    };
+    is_hidden: boolean;
+  }[];
+  stats: {
+    base_stat: number;
+    stat: {
+      name: string;
+    };
+  }[];
   sprites: {
-    versions: {
-      ['generation-v']: {
-        ['black-white']: {
-          animated: {
-            front_default: string | null;
+    versions?: {
+      ["generation-v"]?: {
+        ["black-white"]?: {
+          animated?: {
+            front_default?: string;
           };
         };
       };
     };
-    other: {
-      ['official-artwork']: {
-        front_default: string | null;
-        front_shiny?: string | null;
+    other?: {
+      ["official-artwork"]?: {
+        front_default?: string;
       };
     };
   };
@@ -46,6 +59,10 @@ export type PokemonDetail = {
 export type SpeciesDetail = {
   id: number;
   names: TypeName[];
+  gender_rate: number;
+  egg_groups: {
+    name: string;
+  }[];
   genera: {
     language: { name: string };
     genus: string;
@@ -55,4 +72,19 @@ export type SpeciesDetail = {
     language: { name: string };
     version: { name: string };
   }[];
+  evolution_chain: {
+    url: string;
+  };
+};
+
+export type EvolutionChainResponse = {
+  chain: EvolutionNode;
+};
+
+export type EvolutionNode = {
+  species: {
+    name: string;
+    url: string;
+  };
+  evolves_to: EvolutionNode[];
 };

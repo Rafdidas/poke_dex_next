@@ -1,0 +1,21 @@
+#detail_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    padding: 5rem 0 10rem;
+
+    .detail_inner {
+        
+
+        padding: 2rem;
+        background: #fff;
+        border-radius: 1rem;
+        text-align: center;
+
+        .detail_img > img {
+            width: 50px;
+            height: auto;
+        }
+    }
+}
