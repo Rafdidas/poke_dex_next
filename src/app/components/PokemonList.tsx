@@ -1,5 +1,3 @@
-'use client';
-
 import { fetchPokemonData } from "@/lib/fetchPokemonData";
 import { useEffect } from "react";
 
