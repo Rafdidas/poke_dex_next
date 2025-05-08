@@ -13,7 +13,7 @@ type PageProps = {
 };
 
 export default async function PokemonDetailPage({ params }: PageProps) {
-  const id = await Number(params.id);
+  const id = Number(params.id);
 
   try {
     const data = await fetchPokemonDataById(id);
