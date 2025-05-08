@@ -8,11 +8,11 @@ import '../../styles/pokemonDetailPage.style.scss';
 import backBtn from '@/assets/pixel_ball.png';
 import Link from "next/link";
 
-type Props = {
+type PageProps = {
     params: { id: string };
 };
 
-export default async function PokemonDetailPage({ params }: Props) {
+export default async function PokemonDetailPage({ params }: PageProps) {
     const { id } = params;
     try {
         const data = await fetchPokemonDataById(Number(id));
