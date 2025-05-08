@@ -6,13 +6,11 @@ import Link from "next/link";
 import '../../styles/pokemonDetailPage.style.scss';
 import backBtn from '@/assets/pixel_ball.png';
 
-type PokemonDetailPageProps = {
-  params: {
-    id: string;
-  };
-};
+interface Params {
+  id: string;
+}
 
-export default async function PokemonDetailPage({ params }: PokemonDetailPageProps) {
+export default async function PokemonDetailPage({ params }: { params: Params }) {
   const id = Number(params.id);
   if (isNaN(id)) return notFound();
 
