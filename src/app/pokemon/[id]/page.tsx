@@ -12,7 +12,7 @@ type PokemonDetailPageProps = {
   };
 };
 
-export default async function PokemonDetailPage({ params }: PokemonDetailPageProps) {
+export default async function Page({ params }: PokemonDetailPageProps) {
   const id = Number(params.id);
   if (isNaN(id)) return notFound();
 
