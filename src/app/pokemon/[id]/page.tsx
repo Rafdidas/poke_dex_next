@@ -6,7 +6,13 @@ import Link from "next/link";
 import '../../styles/pokemonDetailPage.style.scss';
 import backBtn from '@/assets/pixel_ball.png';
 
-export default async function Page({ params }: { params: { id: string } }) {
+type PokemonDetailPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function PokemonDetailPage({ params }: PokemonDetailPageProps) {
   const id = Number(params.id);
   if (isNaN(id)) return notFound();
 
@@ -72,6 +78,21 @@ export default async function Page({ params }: { params: { id: string } }) {
               </p>
               <p><strong>알 그룹</strong>: {data.eggGroups.join(", ")}</p>
             </div>
+
+            {/* 추후 구현 */}
+            {/* {data.evolution.length > 0 && (
+              <section className="evolution_section">
+                <h2>진화 경로</h2>
+                <ul className="evolution_list">
+                  {data.evolution.map((evo) => (
+                    <li key={evo.id} className="evolution_item">
+                      <Image src={evo.image} alt={evo.name} width={80} height={80} />
+                      <p>{evo.name}</p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )} */}
           </div>
 
           <Link href="/" className="back_btn">
