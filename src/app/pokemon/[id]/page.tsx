@@ -84,11 +84,9 @@ export default async function PokemonDetailPage({ params }: { params: { id: stri
                         </section>
                         )} */}
                     </div>
-                    <Link href="/">
-                    <p className="back_btn" >
+                    <Link href="/" className="back_btn">
                         <Image src={backBtn} width={24} height={24} alt="masterball"/>
                         <span >뒤로 가기</span>
-                    </p>
                     </Link>
                 </div>
             </main>
