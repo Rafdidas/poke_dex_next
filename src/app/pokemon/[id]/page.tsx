@@ -15,16 +15,23 @@ export default async function PokemonDetailPage({ params }: Props) {
         return (
             <main id="detail_page">
                 <div className="detail_inner">
-                    <Image className="detail_img" src={data.poke_img} alt={data.name} width={100} height={100} />
-                    <p>#{data.pokeId}</p>
-                    <h1>{data.name}</h1>
-                    <p>{data.generas}</p>
-                    <ul>
+                    <div className="detail_img">
+                        <Image src={data.poke_img} alt={data.name} width={100} height={100} />
+                    </div>
+                    <div className="name_info">
+                        <p className="poke_id">#{data.pokeId}</p>
+                        <h1 className="poke_name">{data.name}</h1>
+                        <p className="poke_generas">{data.generas}</p>
+                    </div>
+                    <ul className="poke_type">
                     {data.types.map((type) => (
-                        <li key={type.name}>{type.koreanType}</li>
+                        <li key={type.name} className={`bg_${type.engType}`} >
+                            <Image src={`/assets/type_${type.engType}.svg`} width={100} height={100} alt={type.engType} />
+                            <span>{type.koreanType}</span>
+                        </li>
                     ))}
                     </ul>
-                    <p>{data.flavorTexts}</p>
+                    <p className="poke_summary">{data.flavorTexts}</p>
                     <div className="extra_info">
                         <div className="measurements">
                             <p><strong>키</strong>: {data.height.toLocaleString()} m</p>
@@ -57,7 +64,7 @@ export default async function PokemonDetailPage({ params }: Props) {
                             <p><strong>성별 비율</strong>: {data.genderRate === -1 ? "성별 없음" : `${(12.5 * (8 - data.genderRate)).toFixed(1)}% ♂ / ${(12.5 * data.genderRate).toFixed(1)}% ♀`}</p>
                             <p><strong>알 그룹</strong>: {data.eggGroups.join(", ")}</p>
                         </div>
-                        {/* {data.evolution.length > 0 && (
+                        {data.evolution.length > 0 && (
                         <section className="evolution_section">
                             <h2>진화 경로</h2>
                             <ul className="evolution_list">
@@ -74,7 +81,7 @@ export default async function PokemonDetailPage({ params }: Props) {
                             ))}
                             </ul>
                         </section>
-                        )} */}
+                        )}
                     </div>
                 </div>
             </main>

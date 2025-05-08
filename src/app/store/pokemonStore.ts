@@ -44,7 +44,12 @@ export const usePokemonStore = create<PokemonStore>((set) => ({
     loading: false,
 
     setPokemons: (data) => set({ pokemons: data }),
-    appendPokemons: (data) => set((state) => ({ pokemons: [...state.pokemons, ...data] })),
+    appendPokemons: (data) =>
+        set((state) => {
+            const existingIds = new Set(state.pokemons.map(p => p.pokeId));
+            const uniqueNewData = data.filter(p => !existingIds.has(p.pokeId));
+            return { pokemons: [...state.pokemons, ...uniqueNewData] };
+        }),
     setSearchResult: (data) => set({ searchResult: data }),
     setOffsets: (offset) => set({ offset }),
     setAllNames: (names) => set({ allNames: names }),

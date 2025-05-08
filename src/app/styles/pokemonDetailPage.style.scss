@@ -6,16 +6,75 @@
     padding: 5rem 0 10rem;
 
     .detail_inner {
-        
-
         padding: 2rem;
         background: #fff;
         border-radius: 1rem;
         text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 
-        .detail_img > img {
-            width: 50px;
-            height: auto;
+        .detail_img {
+            padding: 2rem 0;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+        .name_info {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            column-gap: 5px;
+            .poke_id {
+                font-weight: 700;
+            }
+        }
+
+        .poke_type {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 5px;
+            margin: 1rem 0;
+
+            > li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                column-gap: 5px;
+                padding: 0 10px;
+                border-radius: 1.533rem;
+                > span {
+                    color: #fff;
+                }
+                > img {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+
+        .poke_summary {
+            margin-bottom: 1rem;
+            color: #7f7a7a;
+            word-break: keep-all;
+        }
+
+        .extra_info {
+            .measurements {
+                display: flex;
+                justify-self: center;
+                align-items: center;
+                column-gap: 1rem;
+            }
+        }
+
+        .abilities {
+            margin: 1rem 0;
+        }
+
+        .breeding {
+            display: block;
+            margin: 1rem 0;
         }
     }
 }
