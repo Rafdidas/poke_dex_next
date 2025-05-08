@@ -14,7 +14,6 @@ interface PageProps {
 
 export default async function PokemonDetailPage({ params }: PageProps) {
   const id = Number(params.id);
-  if (isNaN(id)) return notFound();
 
   try {
     const data = await fetchPokemonDataById(id);
