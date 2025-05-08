@@ -8,12 +8,12 @@ import backBtn from '@/assets/pixel_ball.png';
 
 type PageProps = {
   params: {
-    id: string;
+    id: number;
   };
 };
 
 export default async function PokemonDetailPage({ params }: PageProps) {
-  const id = Number(params.id);
+  const id = await params.id;
 
   try {
     const data = await fetchPokemonDataById(id);
