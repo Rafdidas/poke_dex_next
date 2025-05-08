@@ -11,8 +11,8 @@ type PageProps = {
     id: number;
   };
 };
-
-export default async function PokemonDetailPage({ params }: PageProps) {
+const PokemonDetailPage = async({ params }: PageProps) => {
+// export default async function PokemonDetailPage({ params }: PageProps) {
   const id = await params.id;
 
   try {
@@ -105,3 +105,5 @@ export default async function PokemonDetailPage({ params }: PageProps) {
     notFound();
   }
 }
+
+export default PokemonDetailPage;
