@@ -6,14 +6,19 @@ import Link from "next/link";
 import '../../styles/pokemonDetailPage.style.scss';
 import backBtn from '@/assets/pixel_ball.png';
 
-type PageParams = Promise<{ id: string }>;
+type Params = Promise<{ id: string }>;
 
-const PokemonDetailPage = async ({ params }: { params: PageParams }) => {
-// export default async function PokemonDetailPage({ params }: PageProps) {
-  const id = await params.id;
+export default async function PokemonDetailPage({
+  params,
+}: {
+  params: Params;
+}) {
+  const { id } = await params;
+  const pokeId = Number(id);
+  if (isNaN(pokeId)) return notFound();
 
   try {
-    const data = await fetchPokemonDataById(id);
+    const data = await fetchPokemonDataById(pokeId);
 
     return (
       <main id="detail_page">
@@ -102,5 +107,3 @@ const PokemonDetailPage = async ({ params }: { params: PageParams }) => {
     notFound();
   }
 }
-
-export default PokemonDetailPage;
