@@ -77,4 +77,18 @@
             margin: 1rem 0;
         }
     }
+
+    .back_btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+        cursor: pointer;
+
+        >img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    }
 }

@@ -8,6 +8,23 @@ export async function fetchPokemonDataByUrl(url: string): Promise<PokemonData> {
   const speciesDetailRes = await fetch(pokemonDetails.species.url);
   const speciesDetails: SpeciesDetail = await speciesDetailRes.json();
 
+  // 진화 데이터 파싱 + 이미지 fetch
+  // const evolutionChainRes = await fetch(speciesDetails.evolution_chain.url);
+  // const evolutionChainData = await evolutionChainRes.json();
+  // const basicEvolutions = parseEvolutionChain(evolutionChainData);
+
+  // const evolution = await Promise.all(
+  //   basicEvolutions.map(async (evo) => {
+  //     const evoRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${evo.id}`);
+  //     const evoData = await evoRes.json();
+  //     return {
+  //       id: evo.id,
+  //       name: evo.name,
+  //       image: evoData.sprites.other["official-artwork"].front_default,
+  //     };
+  //   })
+  // );
+
   const types = await Promise.all(
     pokemonDetails.types.map(async (typeInfo: PokemonTypeRaw) => {
       const typeRes = await fetch(typeInfo.type.url);
